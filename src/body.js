@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, useCallback, useState } from "react";
+import { useEffect, useRef, useCallback, useState } from "react";
+import PostCard from "./postCard";
 
 function Body() {
   const [update, setUpdate] = useState(1);
@@ -39,9 +40,6 @@ function Body() {
     [loading]
   );
 
-  console.log(posts);
-  console.log(nextPage);
-  console.log(update);
   return (
     <div>
       {posts?.map((post, ind) => {
@@ -52,11 +50,9 @@ function Body() {
           thumbnail,
           subreddit_name_prefixed,
           crosspost_parent_list,
+          stickied,
         } = post.data;
         let currentCrosspostParent = crosspost_parent_list;
-        // if (currentCrosspostParent) {
-        //   debugger;
-        // }
         while (currentCrosspostParent?.crosspost_parent_list) {
           currentCrosspostParent =
             currentCrosspostParent[0].currentCrosspostParent;
@@ -66,7 +62,11 @@ function Body() {
           : subreddit_name_prefixed;
         if (posts.length === ind + 1) {
           return (
-            <div ref={lastObj} key={id}>
+            <div
+              ref={lastObj}
+              className={stickied ? "stickied" : "normal"}
+              key={id}
+            >
               Posted by {author}
               <br />
               {originalSubreddit}
@@ -80,17 +80,14 @@ function Body() {
           );
         } else {
           return (
-            <div key={id}>
-              Posted by {author}
-              <br />
-              {originalSubreddit}
-              <br />
-              <a href={`https://www.reddit.com/r/aww/comments/${id}/${title}`}>
-                {title}
-              </a>
-              <br />
-              {thumbnail && thumbnail !== "default" && <img src={thumbnail} />}
-            </div>
+            <PostCard
+              stickied={stickied}
+              id={id}
+              author={author}
+              originalSubreddit={originalSubreddit}
+              title={title}
+              thumbnail={thumbnail}
+            />
           );
         }
       })}
