@@ -19,7 +19,7 @@ function PostCard(props) {
     >
       <div>
         {thumbnail && thumbnail !== "default" && (
-          <img className="post-img" src={thumbnail} />
+          <img alt={title} className="post-img" src={thumbnail} />
         )}
       </div>
       <div>

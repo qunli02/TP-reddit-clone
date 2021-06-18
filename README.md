@@ -5,9 +5,8 @@ A Single page of reddit without any other function other than to scroll through 
 ## Installation
 
 once forked locate and open the file in terminal directory.
-`Run npm install`
-then
+Run `npm install` then run `npm start`.
 
-```npm
+## Built
 
-```
+Created using React hooks.
