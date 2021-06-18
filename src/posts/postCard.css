@@ -1,0 +1,31 @@
+.stickied,
+.normal {
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+
+.stickied {
+  border: solid #f0f089;
+  background-color: #fffff5;
+}
+
+.normal {
+  border: solid paleturquoise;
+  background-color: #ebfffd;
+}
+
+.post-card {
+  display: flex;
+}
+
+.post-img {
+  margin-right: 15px;
+}
+
+.post-title {
+  font-size: 2em;
+  margin: 10px 0;
+  color: black;
+  text-decoration: none;
+}
