@@ -1,7 +1,7 @@
 import { useEffect, useRef, useCallback, useState } from "react";
 import PostCard from "./postCard";
 
-function Body() {
+function PostList() {
   const [update, setUpdate] = useState(1);
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -60,40 +60,23 @@ function Body() {
         let originalSubreddit = currentCrosspostParent
           ? currentCrosspostParent[0].subreddit_name_prefixed
           : subreddit_name_prefixed;
-        if (posts.length === ind + 1) {
-          return (
-            <div
-              ref={lastObj}
-              className={stickied ? "stickied" : "normal"}
-              key={id}
-            >
-              Posted by {author}
-              <br />
-              {originalSubreddit}
-              <br />
-              <a href={`https://www.reddit.com/r/aww/comments/${id}/${title}`}>
-                {title}
-              </a>
-              <br />
-              {thumbnail && thumbnail !== "default" && <img src={thumbnail} />}
-            </div>
-          );
-        } else {
-          return (
-            <PostCard
-              stickied={stickied}
-              id={id}
-              author={author}
-              originalSubreddit={originalSubreddit}
-              title={title}
-              thumbnail={thumbnail}
-            />
-          );
-        }
+
+        return (
+          <PostCard
+            key={id}
+            lastObj={posts.length === ind + 1 ? lastObj : null}
+            stickied={stickied}
+            id={id}
+            author={author}
+            originalSubreddit={originalSubreddit}
+            title={title}
+            thumbnail={thumbnail}
+          />
+        );
       })}
       <div>{loading && "loading..."}</div>
     </div>
   );
 }
 
-export default Body;
+export default PostList;

@@ -1,10 +1,18 @@
 import { useEffect, useRef, useCallback, useState } from "react";
 
 function PostCard(props) {
-  const { stickied, id, author, originalSubreddit, title, thumbnail } = props;
+  const {
+    stickied,
+    id,
+    author,
+    originalSubreddit,
+    title,
+    thumbnail,
+    lastObj,
+  } = props;
 
   return (
-    <div className={stickied ? "stickied" : "normal"} key={id}>
+    <div ref={lastObj} className={stickied ? "stickied" : "normal"} key={id}>
       Posted by {author}
       <br />
       {originalSubreddit}
