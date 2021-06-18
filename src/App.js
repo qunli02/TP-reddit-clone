@@ -1,4 +1,4 @@
-import Body from "./body2.js";
+import Body from "./body.js";
 import React from "react";
 import "./App.css";
 
